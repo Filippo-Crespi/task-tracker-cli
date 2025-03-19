@@ -21,6 +21,23 @@ const handleCommands = (command) => {
   }
 };
 
+const taskStatus = {
+  0: "To Do",
+  1: "In progress",
+  2: "Done",
+};
+
+const addTask = (description) => {
+  const lastId = tasks[tasks.length].id;
+  const task = {
+    id: lastId + 1,
+    description: description,
+    status: taskStatus[0],
+    createdAt: `${new Date().getDate()} - ${new Date().getTime()}`,
+    updatedAt: this.createdAt,
+  };
+};
+
 const initLoad = () => {
   return [];
 };
