@@ -5,6 +5,8 @@ const handleCommands = (command) => {
       break;
     case "update":
       break;
+    case "delete":
+      break;
     case "progress":
       break;
     case "done":
@@ -18,3 +20,21 @@ const handleCommands = (command) => {
       break;
   }
 };
+
+const initLoad = () => {
+  return [];
+};
+
+let tasks = initLoad();
+
+function main() {
+  while (true) {
+    let command = "";
+    // Read command
+    if (command.split(" ")[0] === "exit") return;
+    // Handle Command
+    handleCommands(command);
+  }
+}
+
+main();
