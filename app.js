@@ -1,3 +1,5 @@
+var readline = require("readline");
+
 const handleCommands = (command) => {
   const params = command.split(" ");
   switch (params[0]) {
@@ -45,13 +47,25 @@ const initLoad = () => {
 let tasks = initLoad();
 
 function main() {
-  while (true) {
-    let command = "";
-    // Read command
-    if (command.split(" ")[0] === "exit") return;
-    // Handle Command
-    handleCommands(command);
-  }
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
+  const askQuestion = () => {
+    rl.question(`>_ `, (commandInput) => {
+      const command = commandInput;
+      if (command.split(" ")[0] === "exit") {
+        rl.close();
+        return;
+      }
+
+      handleCommands(command);
+      askQuestion();
+    });
+  };
+
+  askQuestion();
 }
 
 main();
